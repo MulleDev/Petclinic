@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://demo.playwright.dev/todomvc');
+  await page.goto('http://localhost:8080');
 });
 
 const TODO_ITEMS = [
@@ -406,6 +406,45 @@ test.describe('Routing', () => {
     // Page change - completed items.
     await expect(completedLink).toHaveClass('selected');
   });
+});
+
+test('should create owner, add pet and make a visit', async ({ page }) => {
+  // 1. Gehe zur Startseite
+  await page.goto('http://localhost:8080');
+
+  // 2. Klicke auf "FIND OWNERS"
+  await page.getByRole('link', { name: 'FIND OWNERS' }).click();
+
+  // 3. Klicke auf "Add Owner"
+  await page.getByRole('link', { name: 'Add Owner' }).click();
+
+  // 4. Fülle das Owner-Formular aus
+  await page.getByLabel('First Name').fill('Max');
+  await page.getByLabel('Last Name').fill('Mustermann');
+  await page.getByLabel('Address').fill('Musterstraße 1');
+  await page.getByLabel('City').fill('Musterstadt');
+  await page.getByLabel('Telephone').fill('123456789');
+  await page.getByRole('button', { name: 'Add Owner' }).click();
+
+  // 5. Klicke auf "Add New Pet"
+  await page.getByRole('link', { name: 'Add New Pet' }).click();
+
+  // 6. Fülle das Pet-Formular aus
+  await page.getByLabel('Name').fill('Bello');
+  await page.getByLabel('Birth Date').fill('2015-01-01');
+  await page.getByLabel('Type').selectOption({ label: 'dog' });
+  await page.getByRole('button', { name: 'Add Pet' }).click();
+
+  // 7. Klicke auf "Add Visit"
+  await page.getByRole('link', { name: 'Add Visit' }).click();
+
+  // 8. Fülle das Visit-Formular aus
+  await page.getByLabel('Date').fill('2025-07-01');
+  await page.getByLabel('Description').fill('Routine Check');
+  await page.getByRole('button', { name: 'Add Visit' }).click();
+
+  // 9. Überprüfe, ob der Termin angezeigt wird
+  await expect(page.locator('table')).toContainText('Routine Check');
 });
 
 async function createDefaultTodos(page: Page) {
