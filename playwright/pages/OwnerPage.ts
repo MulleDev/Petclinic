@@ -10,19 +10,19 @@ export class OwnerPage {
     return this.page.getByRole('link', { name: 'Add Owner' });
   }
   private get firstNameInput() {
-    return this.page.getByLabel('First Name');
+    return this.page.getByTestId('firstName');
   }
   private get lastNameInput() {
-    return this.page.getByLabel('Last Name');
+    return this.page.getByTestId('lastName');
   }
   private get addressInput() {
-    return this.page.getByLabel('Address');
+    return this.page.getByTestId('address');
   }
   private get cityInput() {
-    return this.page.getByLabel('City');
+    return this.page.getByTestId('city');
   }
   private get telephoneInput() {
-    return this.page.getByLabel('Telephone');
+    return this.page.getByTestId('telephone');
   }
   private get addOwnerButton() {
     return this.page.getByRole('button', { name: 'Add Owner' });

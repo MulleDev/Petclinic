@@ -4,10 +4,10 @@ export class VisitPage {
   constructor(private page: Page) {}
 
   private get dateInput() {
-    return this.page.getByLabel('Date');
+    return this.page.getByTestId('date');
   }
   private get descriptionInput() {
-    return this.page.getByLabel('Description');
+    return this.page.getByTestId('description');
   }
   private get addVisitButton() {
     return this.page.getByRole('button', { name: 'Add Visit' });

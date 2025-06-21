@@ -4,13 +4,13 @@ export class PetPage {
   constructor(private page: Page) {}
 
   private get nameInput() {
-    return this.page.getByLabel('Name');
+    return this.page.getByTestId('name');
   }
   private get birthDateInput() {
-    return this.page.getByLabel('Birth Date');
+    return this.page.getByTestId('birthDate');
   }
   private get typeSelect() {
-    return this.page.getByLabel('Type');
+    return this.page.getByTestId('type');
   }
   private get addPetButton() {
     return this.page.getByRole('button', { name: 'Add Pet' });
