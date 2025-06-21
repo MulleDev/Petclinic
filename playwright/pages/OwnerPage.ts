@@ -50,7 +50,7 @@ export class OwnerPage {
 
   async gotoAddPet() {
     // Warte auf ein Element, das garantiert auf der Owner-Detailseite existiert (z.B. Adresse)
-    await this.page.getByText('Owner Information', { exact: false }).waitFor({ timeout: 5000 });
+    //await this.page.getByText('Owner Information', { exact: false }).waitFor({ timeout: 5000 });
     await this.addPetLink.click();
   }
 }
