@@ -13,7 +13,8 @@ export class VisitPage {
     return this.page.getByRole('button', { name: 'Add Visit' });
   }
   private get visitTable() {
-    return this.page.locator('table');
+    // Selektiere die erste Tabelle mit der Klasse 'table-condensed' (Visits)
+    return this.page.locator('table.table-condensed').first();
   }
 
   async addVisit({ date, description }: { date: string, description: string }) {
